@@ -1,0 +1,16 @@
+RewriteEngine On
+
+# Rewrite user URLs
+#   Input:  api/Number/
+#   Output: api.php?id=Number
+RewriteRule ^api/review/(\d+)/?$ api/review.php?id=$1
+
+# Rewrite user URLs
+#   Input:  api/NAME/
+#   Output: api.php?id=NAME
+RewriteRule ^api/review/(\w+)/?$ api/review.php?id=$1
+
+# Rewrite user URLs
+#   Input:  api/review/
+#   Output: api/review.php
+RewriteRule ^api/review/?$ api/review.php

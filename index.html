@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Review Website - Home Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+		<style>
+			
+			body {
+				background-color: lightblue;
+			}
+            table,th,td {
+				background-color: #ccff99;
+                border : 1px solid blue;
+                border-collapse: collapse;
+            }
+			
+            th,td {
+                padding: 5px;
+            }
+			
+        </style>
+		
+    </head>
+	
+    <body>
+	
+        <div>
+            <h2>All Raccoons</h2>
+            <input type="button" value="Show List of Raccoons" onclick="listRaccoons();" />
+            <br><br>
+            <table id="allRaccoons"></table>
+        </div>
+		<div>
+            <h2>Search using ID</h2>
+            <input type="text" id="Raccoonid" size="5" />
+            <input type="button" value="Search" onclick="findRaccoon(); " />
+            <p id="raccoon"></p>
+        </div>
+		<div>
+            <h2>Insert Your Reviews</h2>
+            Raccoon ID <input type="text" id="Raccoon ID" size="5" />
+			Name <input type="text" id="Name" size="5" />
+			Review <input type="text" id="review" size="5" />
+			Rating  <select name="cars" id="rating">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+			</select>
+            <input type="button" value="Submit" onclick="insert();" />
+            <p id="output"></p>
+        </div>
+        <!-- The JavaScript functions sending the GET/POST/PUT/DELETE requests to the server-->
+        <script>
+            function listRaccoons() {
+                var table = "<tr><th>ID</th><th>Raccoon Name</th></tr>";
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                        var JSONRaccoon = JSON.parse(xhttp.responseText);
+                        var raccoonArr = JSONRaccoon.raccoon;
+                        for (i = 0; i < raccoonArr.length; i++) {
+                            table += "<tr><td>" + raccoonArr[i].id +
+                                    "</td><td>" + raccoonArr[i].name +
+						"</td></tr>";
+                        }
+                        document.getElementById("allRaccoons").innerHTML = table;
+                    }
+                };
+                xhttp.open("GET", "api/review.php", true);
+                xhttp.send();
+            }
+            function findRaccoon() {
+                var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        var JSONReview = JSON.parse(xhttp.responseText);
+						 var ReviewArr = JSONReview.review;
+						
+						if((ReviewArr[0].id)!=null)
+						{
+							document.getElementById("raccoon").innerHTML = "<br>Raccoon ID: " +ReviewArr[0].id+"<br>Raccoon Name: " + ReviewArr[0].name +'<br><img style="width:250px;height:25 0px;" src="' +ReviewArr[0].image+'">' + "<br>Average Rating: " + ReviewArr[0].rating;
+						}
+						else
+						{
+						     document.getElementById("raccoon").innerHTML ="Please enter correct ID";
+						}
+					
+					}
+                };
+                xhttp.open("GET", "api/review.php?id="+document.getElementById("Raccoonid").value , true);
+                xhttp.send();
+				myfunction()			
+            }
+			function insert() {
+                var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        document.getElementById("output").innerHTML = this.responseText;
+					}
+                };
+				xhttp.open("POST", "api/review.php" , true);
+				xhttp.setRequestHeader("Content-type","application/json");
+				
+			var JSONObject={};
+			JSONObject.raccoonid   =   document.getElementById("Raccoon ID").value;
+			JSONObject.reviewname  =   document.getElementById("Name").value;
+			JSONObject.review  =   document.getElementById("review").value;
+			JSONObject.rating  =  document.getElementById("rating").value;
+			xhttp.send(JSON.stringify(JSONObject));
+						
+			}
+			
+			function myfunction(){
+			var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        var JSONReview = JSON.parse(xhttp.responseText);
+						 var ReviewArr = JSONReview.review;
+						setInterval(function(){document.getElementById("raccoon").innerHTML = "<br>Raccoon ID: " +ReviewArr[0].id+"<br>Raccoon Name: " + ReviewArr[0].name + "<br>Average Rating: " + ReviewArr[0].rating;},30000);
+					}					
+				};
+                xhttp.open("GET", "api/review.php?id="+document.getElementById("Raccoonid").value , true);
+                xhttp.send();
+			}
+				
+        </script>
+    </body>
+</html>

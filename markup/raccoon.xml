@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<raccoonlist>
+	<raccoon>
+		<id>1</id>
+		<name>rc1</name>
+		<image><img src="images/rc1.png" class="rcImg" /></image>
+		<reviewlist>
+			<review>
+				<id>1</id>
+				<raccoon_id>1</raccoon_id>
+				<reviewer>bob</reviewer>
+				<review>He looks sad</review>
+				<rating>3</rating>
+			</review>
+			<review>
+				<id>2</id>
+				<raccoon_id>1</raccoon_id>
+				<reviewer>Sam</reviewer>
+				<review>He is very cute</review>
+				<rating>4</rating>
+			</review>
+		</reviewlist>
+	</raccoon>
+	<raccoon>
+		<id>2</id>
+		<name>rc2</name>
+		<image><img src="images/rc2.png" class="rcImg" /></image>
+		<reviewlist>
+			<review>
+				<id>3</id>
+				<raccoon_id>2</raccoon_id>
+				<reviewer>Ram</reviewer>
+				<review>Mother love</review>
+				<rating>5</rating>
+			</review>
+			<review>
+				<id>5</id>
+				<raccoon_id>2</raccoon_id>
+				<reviewer>Sham</reviewer>
+				<review>Cuteness overloaded</review>
+				<rating>5</rating>
+			</review>
+		</reviewlist>
+	</raccoon>
+	<raccoon>
+		<id>3</id>
+		<name>rc3</name>
+		<image><img src="images/rc3.png" class="rcImg" /></image>
+		<reviewlist>
+			<review>
+				<id>5</id>
+				<raccoon_id>3</raccoon_id>
+				<reviewer>krishna</reviewer>
+				<review>He is alert</review>
+				<rating>3</rating>
+			</review>
+			<review>
+				<id>6</id>
+				<raccoon_id>3</raccoon_id>
+				<reviewer>Harry</reviewer>
+				<review>His eyes are very nice</review>
+				<rating>3</rating>
+			</review>
+		</reviewlist>
+	</raccoon>
+	<raccoon>
+		<id>4</id>
+		<name>rc4</name>
+		<image><img src="images/rc4.png" class="rcImg" /></image>
+		<reviewlist>
+			<review>
+				<id>7</id>
+				<raccoon_id>4</raccoon_id>
+				<reviewer>abc</reviewer>
+				<review>Looking pretty</review>
+				<rating>4</rating>
+			</review>
+			<review>
+				<id>8</id>
+				<raccoon_id>4</raccoon_id>
+				<reviewer>xyz</reviewer>
+				<review>Nice raccoon</review>
+				<rating>2</rating>
+			</review>
+		</reviewlist>
+	</raccoon>
+</raccoonlist>
